@@ -1,0 +1,11 @@
+streamlit
+openai
+langchain>=1.2.0
+langchain-openai
+langchain-chroma
+langchain-community
+chromadb
+pydub
+ffmpeg-python
+rank-bm25
+python-dotenv
