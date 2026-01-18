@@ -1,0 +1,26 @@
+flowchart TD
+    %% User interaction
+    UI[Streamlit UI] -->|User Question| AGENT[Agent Controller]
+
+    %% Retrieval Layer
+    AGENT --> RETRIEVER[Retriever Layer]
+
+    RETRIEVER -->|Vector Search| CHROMA[(ChromaDB Vector Store)]
+    RETRIEVER -->|Keyword Search| BM25[BM25 Retriever]
+
+    %% Retrieved content
+    CHROMA --> DOCS[Relevant Document Chunks]
+    BM25 --> DOCS
+
+    %% Answer generation
+    DOCS --> AGENT
+    AGENT -->|Context + Question| LLM[Language Model / Answer Generator]
+
+    %% Output & evaluation
+    LLM --> ANSWER[Generated Answer]
+    ANSWER --> EVAL[Evaluator]
+    EVAL -->|Scores: relevance, faithfulness, clarity| AGENT
+
+    %% Decision & action loop
+    AGENT -->|Decision| ACTIONS[Actions: Accept / Rewrite / Abstain]
+    ACTIONS --> UI
