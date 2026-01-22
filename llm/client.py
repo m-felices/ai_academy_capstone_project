@@ -68,27 +68,3 @@ def rewrite_answer(answer: str) -> str:
     )
 
     return response.choices[0].message.content.strip()
-
-
-# def generate_answer(prompt):
-#
-#     response = client.chat.completions.create(
-#         model="gpt-4o-mini",
-#         messages=[{"role": "user", "content": prompt}],
-#         temperature=0,
-#         max_tokens=300
-#     )
-#     return response.choices[0].message.content
-
-
-#
-# def generate(question, text):
-#     # Combine retrieved documents into a single context string
-#     context = "\n\n".join([getattr(t, "page_content", t.get("text")) for t in text])
-#
-#     prompt = ANSWER_PROMPT.format(context=context, question=question)
-#
-#     response = client.chat.completions.create(model="gpt-4o-mini", messages=[{"role": "user", "content": prompt}],
-#                                               temperature=0, max_tokens=400)
-#
-#     return response.choices[0].message.content

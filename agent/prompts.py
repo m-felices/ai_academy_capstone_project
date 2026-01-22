@@ -40,18 +40,3 @@ Answer:
 
 Rewrite clearly.
 """
-# REFLECTION_PROMPT = """
-# Review the answer below.
-#
-# - Is it supported by the context?
-# - Is anything missing or misleading?
-# - Improve clarity.
-#
-# Context:
-# {context}
-#
-# Answer:
-# {answer}
-#
-# Return a revised answer.
-# """
