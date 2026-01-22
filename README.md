@@ -25,7 +25,7 @@ The project includes a **Streamlit UI** for interactive testing, making it **lig
 ### Option 1 - Run with Docker (Recommended)
 
 This is the easiest way to run the app without installing anything locally.
-```shell
+
 1. Clone the repo:
 ```shell
 git clone https://github.com/m-felices/ai_academy_capstone_project.git
