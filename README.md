@@ -22,40 +22,49 @@ The project includes a **Streamlit UI** for interactive testing, making it **lig
 
 ## Quickstart Setup
 
-### 1. Clone repo
+### Option 1 - Run with Docker (Recommended)
 
+This is the easiest way to run the app without installing anything locally.
+```shell
+git clone https://github.com/m-felices/ai_academy_capstone_project.git
+cd ai_academy_capstone_project
+docker compose up --build
+```
+Then open your browser at http://localhost:8501
+
+
+### Option 2 – Run Locally (Optional)
+If you prefer to run the app on your local Python environment:
+ 
+1. Clone the repo:
 ```shell
 git clone https://github.com/m-felices/ai_academy_capstone_project.git
 cd ai_academy_capstone_project
 ```
 
-### 2. Set your [OpenAI API key](https://platform.openai.com/api-keys)
-
+2. Set your [OpenAI API key](https://platform.openai.com/api-keys)
 ```shell
 export OPENAI_API_KEY="sk_..."
 ```
+(or save it in `.env.`)
 
-(or in `.env.`)
-
-### 3. Install dependencies
-
+3. Install dependencies
 ```shell
 pip install -r requirements.txt
 ```
 
-### 4. Run the app
-
+4. Run the app
 ```shell
 streamlit run app.py
 ```
 
-### 5. Using Docker
+5. Using Docker
 ```shell
 docker compose up --build
 ```
 
+6. Navigate to [http://localhost:8501](http://localhost:8501).
 
-### 6. Navigate to [http://localhost:8501](http://localhost:8501).
 
 ## Data
 
