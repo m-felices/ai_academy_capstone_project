@@ -26,11 +26,23 @@ The project includes a **Streamlit UI** for interactive testing, making it **lig
 
 This is the easiest way to run the app without installing anything locally.
 ```shell
+1. Clone the repo:
+```shell
 git clone https://github.com/m-felices/ai_academy_capstone_project.git
 cd ai_academy_capstone_project
+```
+
+2. Create a .env file in the project root with your OpenAI API key:
+ ```shell
+OPENAI_API_KEY=sk_...
+```
+
+3. Start the app with Docker Compose:
+``` shell 
 docker compose up --build
 ```
-Then open your browser at http://localhost:8501
+
+4. Then open your browser at http://localhost:8501
 
 
 ### Option 2 – Run Locally (Optional)
@@ -42,9 +54,10 @@ git clone https://github.com/m-felices/ai_academy_capstone_project.git
 cd ai_academy_capstone_project
 ```
 
-2. Set your [OpenAI API key](https://platform.openai.com/api-keys)
+2. Set your [OpenAI API key](https://platform.openai.com/api-keys) in your shell or .env file:
 ```shell
-export OPENAI_API_KEY="sk_..."
+export OPENAI_API_KEY="sk_..."  # macOS / Linux
+setx OPENAI_API_KEY "sk_..."    # Windows
 ```
 (or save it in `.env.`)
 
