@@ -63,14 +63,14 @@ try:
     # Display answer
     # -----------------------------
     if st.session_state.answer is not None:
-        st.subheader("🧠 Answer")
+        st.subheader("Answer")
         st.write(st.session_state.answer)
 
     # -----------------------------
     # Display agent reflection
     # -----------------------------
     if st.session_state.evaluation is not None:
-        st.subheader("🔍 Agent Self-Reflection")
+        st.subheader("Agent Self-Reflection")
         st.json({
             "evaluation": st.session_state.evaluation,
             "actions_taken": st.session_state.actions
