@@ -74,11 +74,6 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-6. Using Docker
-```shell
-docker compose up --build
-```
-
 7. Navigate to [http://localhost:8501](http://localhost:8501).
 
 

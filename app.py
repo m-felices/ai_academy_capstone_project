@@ -33,19 +33,23 @@ try:
         logger.info("App started")
         st.session_state["app_started"] = True
 
-    if ask_button and question.strip():
-        # ----------------------
-        # Clear previous state
-        # ----------------------
-        logger.info("clear")
-        st.session_state.question = question # save new question
-        st.session_state.answer = None
-        st.session_state.evaluation = None
-        st.session_state.actions = None
+    question = (question or "").strip()
 
-        if question.strip() == "":
-            st.warning("Please enter a question.")
+    if ask_button:
+        logger.info("Ask button clicked")
+
+        if not question:
+            logger.warning("Empty question submitted")
         else:
+            # ----------------------
+            # Clear previous state
+            # ----------------------
+            logger.info("clear")
+            st.session_state.question = question # save new question
+            st.session_state.answer = None
+            st.session_state.evaluation = None
+            st.session_state.actions = None
+
             with st.spinner("Agent is reasoning..."):
                 try:
                     logger.info(f"User question submitted: {question}")
@@ -59,22 +63,22 @@ try:
                     st.error("An internal error occurred.")
                     st.exception(e)
 
-    # -----------------------------
-    # Display answer
-    # -----------------------------
-    if st.session_state.answer is not None:
-        st.subheader("Answer")
-        st.write(st.session_state.answer)
+        # -----------------------------
+        # Display answer
+        # -----------------------------
+        if st.session_state.answer is not None:
+            st.subheader("Answer")
+            st.write(st.session_state.answer)
 
-    # -----------------------------
-    # Display agent reflection
-    # -----------------------------
-    if st.session_state.evaluation is not None:
-        st.subheader("Agent Self-Reflection")
-        st.json({
-            "evaluation": st.session_state.evaluation,
-            "actions_taken": st.session_state.actions
-        })
+        # -----------------------------
+        # Display agent reflection
+        # -----------------------------
+        if st.session_state.evaluation is not None:
+            st.subheader("Agent Self-Reflection")
+            st.json({
+                "evaluation": st.session_state.evaluation,
+                "actions_taken": st.session_state.actions
+            })
 
 except Exception as e:
     st.error("Something went wrong while answering your question.")
