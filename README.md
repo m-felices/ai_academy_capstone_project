@@ -36,8 +36,8 @@ cd ai_academy_capstone_project
  ```shell
 OPENAI_API_KEY=sk_...
 ```
-3. Place PDFs in data/pdf/ and audio files in data/audio/ (not tracked by git).
 
+3. Place PDFs in `data/pdf/` and audio files in `data/audio/` (not tracked by git).
 
 4. Start the app with Docker Compose:
 ``` shell 
@@ -45,7 +45,6 @@ docker compose up --build
 ```
 
 5. Then open your browser at http://localhost:8501
-
 
 ### Option 2 – Run Locally (Optional)
 If you prefer to run the app on your local Python environment:
@@ -67,7 +66,8 @@ setx OPENAI_API_KEY "sk_..."    # Windows
 ```shell
 pip install -r requirements.txt
 ```
-4. Place PDFs in data/pdf/ and audio files in data/audio/ (not tracked by git).
+
+4. Place PDFs in `data/pdf/` and audio files in `data/audio/` (not tracked by git).
 
 5. Run the app
 ```shell
@@ -137,9 +137,9 @@ Scores generated answers on:
 
 7. **Streamlit UI**  
 Provides a simple web interface for interaction.
-- User input textbox
-- Displays final answers
-- Automatically resets state between questions to avoid unnecessary API calls
+   - User input textbox
+   - Displays final answers
+   - Automatically resets state between questions to avoid unnecessary API calls
 
 
 ## Technologies and Libraries
