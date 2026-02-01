@@ -36,13 +36,15 @@ cd ai_academy_capstone_project
  ```shell
 OPENAI_API_KEY=sk_...
 ```
+3. Place PDFs in data/pdf/ and audio files in data/audio/ (not tracked by git).
 
-3. Start the app with Docker Compose:
+
+4. Start the app with Docker Compose:
 ``` shell 
 docker compose up --build
 ```
 
-4. Then open your browser at http://localhost:8501
+5. Then open your browser at http://localhost:8501
 
 
 ### Option 2 – Run Locally (Optional)
@@ -65,95 +67,80 @@ setx OPENAI_API_KEY "sk_..."    # Windows
 ```shell
 pip install -r requirements.txt
 ```
+4. Place PDFs in data/pdf/ and audio files in data/audio/ (not tracked by git).
 
-4. Run the app
+5. Run the app
 ```shell
 streamlit run app.py
 ```
 
-5. Using Docker
+6. Using Docker
 ```shell
 docker compose up --build
 ```
 
-6. Navigate to [http://localhost:8501](http://localhost:8501).
+7. Navigate to [http://localhost:8501](http://localhost:8501).
 
-
-## Data
-
- - Place PDFs in data/pdf/
- - Place audio files in data/audio/ (not tracked by git)
- - Folders exist via .gitkeep
 
 ## Overview
 
-The Agentic RAG Assistant follows a multi-step reasoning pipeline:
+The Agentic RAG Assistant follows a multi-step reasoning pipeline and allows agent to self-reflect on its outputs and take meaningful actions:
 
 1. User submits a question via the UI
 2. Relevant document chunks are retrieved using hybrid search
 3. The LLM generates an answer grounded in retrieved context
 4. The agent evaluates the quality of the answer
 5. Based on the evaluation, the agent decides to:
- - Accept the answer
- - Rewrite it 
- - Return “I don’t know” if context is insufficient
-
-This architecture allows the agent to self-reflect on its outputs and take meaningful actions, rather than responding blindly.
+   - Accept the answer
+   - Rewrite it 
+   - Return “I don’t know” if context is insufficient
 
 ## Main components
 
 1. **Document Loader**  
-Loads source documents (PDFs and optional audio transcripts) and converts them into a unified `Document` format for downstream processing.
+Loads source documents (PDFs and audio files) and converts them into a unified `Document` format for downstream processing.
+   - Stored under `data/`
 
-- PDF loaders (e.g., `PyPDFLoader`)
-- Optional audio transcription pipeline
-- Stored under `data/`
 
 2. **Text Splitter**  
 Splits documents into overlapping chunks to balance semantic coherence and retrieval accuracy.
 
-- Configurable `chunk_size` and `chunk_overlap`
+   - Configurable `chunk_size` and `chunk_overlap`
+
 
 3. **Vector Store (ChromaDB)**  
 Stores document embeddings for semantic similarity search.
+   - Persistent local storage
+   - Enables vector-based retrieval
 
-- Persistent local storage
-- Enables fast vector-based retrieval
-- Powered by OpenAI or compatible embedding models
 
 4. **Keyword Retriever (BM25)**  
 Performs lexical search to complement vector retrieval.
+   - Effective for exact terms, acronyms, and domain-specific words
+   - Combined with vector search for hybrid retrieval
 
-- Effective for exact terms, acronyms, and domain-specific words
-- Combined with vector search for hybrid retrieval
 
 5. **Agent Controller**  
 Orchestrates the full reasoning loop.
-
 - Combines retrieved context
 - Calls the LLM for answer generation
 - Invokes evaluation and decides next actions
 
 6. **Evaluator**  
 Scores generated answers on:
+   - **Relevance**
+   - **Faithfulness**
+   - **Clarity**
 
-- **Relevance**
-- **Faithfulness**
-- **Clarity**
+    Returns structured scores that the agent uses to decide whether to accept or revise an answer.
 
-Returns structured scores that the agent uses to decide whether to accept or revise an answer.
 
 7. **Streamlit UI**  
 Provides a simple web interface for interaction.
-
 - User input textbox
 - Displays final answers
 - Automatically resets state between questions to avoid unnecessary API calls
-8. **Streamlit UI**.
-Provides a simple web interface for interaction.
- - User input textbox
-- Displays final answers
-- Automatically resets state between questions to avoid unnecessary API calls
+
 
 ## Technologies and Libraries
 - Python 3.10+
