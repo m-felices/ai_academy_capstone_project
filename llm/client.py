@@ -1,4 +1,5 @@
 import json
+import os
 import re
 from agent.prompts import ANSWER_PROMPT, EVAL_PROMPT, REWRITE_PROMPT
 from openai import OpenAI
@@ -9,7 +10,15 @@ logger = setup_logger("client")
 
 
 load_dotenv()
-client = OpenAI()
+
+# Check API key
+api_key = os.environ.get("OPENAI_API_KEY")
+if not api_key:
+    raise RuntimeError("OPENAI_API_KEY not set. Please check your .env or environment variables.")
+
+# Create a single OpenAI client instance
+client = OpenAI(api_key=api_key)
+
 def generate_answer(question: str, context: str) -> str:
     logger.info("Generating answer")
     prompt = ANSWER_PROMPT.format(
